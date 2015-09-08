@@ -10,7 +10,7 @@ import Foundation
 
 
 enum Suit:Int{
-    case Hearts=1, Spades, Diamonds, Clubs
+    case Clubs=1, Diamonds, Spades, Hearts
 }
 
 enum Rank:Int{

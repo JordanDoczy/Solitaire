@@ -10,9 +10,6 @@ import SpriteKit
 
 class GameScene: SKScene {
     
-    
-    
-    
     override func didMoveToView(view: SKView) {
         debugPrint("GameScene.didMoveToView")
         backgroundColor = SKColor.whiteColor()
@@ -25,12 +22,8 @@ class GameScene: SKScene {
         var column:CGFloat = 0
 
         for card in deck.cards{
-            let image = SKSpriteNode()
-            image.texture = card.texture
-            image.position = CGPoint(x: row*cardWidth + 100, y: column*cardHeight + 100 )
-            image.size.width = cardWidth
-            image.size.height = cardHeight
-            addChild(image)
+            card.position = CGPoint(x: row*cardWidth + 100, y: column*cardHeight + 100 )
+            addChild(card)
             row++
             if(row==13){
                 row = 0
@@ -38,17 +31,15 @@ class GameScene: SKScene {
             }
         }
         
-        
-        
-        
-        
-        
-        
-        //let imageName = "Deck"
-        //let image = UIImage(named: imageName)
-        //let imageView = UIImageView(image: image!)
-        //imageView.frame = CGRect(x: 10, y: 50, width: 948/3, height: 615/3)
-        //view.addSubview(imageView)
+        NSUserDefaults.standardUserDefaults().
+
+    }
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        debugPrint("touchesBegan")
+        for touch in touches{
+            debugPrint(touch.view)
+        }
         
     }
     

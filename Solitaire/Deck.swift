@@ -54,7 +54,6 @@ class Deck {
         let width:CGFloat = 1/13
         let height:CGFloat = 1/4
         let bounds:CGRect = CGRectMake(x, y, width, height)
-        //debugPrint(bounds)
         
         return SKTexture(rect: bounds, inTexture: texture)
     }

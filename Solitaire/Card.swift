@@ -10,91 +10,69 @@ import Foundation
 import UIKit
 import SpriteKit
 
+var _zPosition:CGFloat = 1
+
 class Card:SKSpriteNode {
     
-    let _size:CGSize = CGSize(width: 40,height: 40*1.4)
+    let _size:CGSize = CGSize(width: 50,height: 50*1.4)
     var suit:Suit
     var rank:Rank
+    var cardColor:CardColor
+    var previousPosition = CGPoint()
     
     init(suit:Suit, rank:Rank, texture:SKTexture){
         self.suit = suit
         self.rank = rank
+        self.cardColor = suit == Suit.Hearts || suit == Suit.Diamonds ? CardColor.Red : CardColor.Black
+        
         
         super.init(texture: texture, color: UIColor.whiteColor(), size: _size)
+        
+        name = String(self.rank) + " of " + String(self.suit)
         userInteractionEnabled = true
-    }
+        physicsBody = SKPhysicsBody(rectangleOfSize: CGSize(width: 35,height: 49)
+, center: position)
+        physicsBody!.affectedByGravity = false
+        physicsBody!.categoryBitMask = Object.Card.rawValue
+        physicsBody!.contactTestBitMask = Object.Card.rawValue
+        physicsBody!.collisionBitMask = Object.Card.rawValue
+        physicsBody!.usesPreciseCollisionDetection = true
+        physicsBody!.allowsRotation = false
 
-   required init?(coder aDecoder: NSCoder) {
+
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     func print()->Void{
-        debugPrint(suit, rank, texture!.textureRect())
+        debugPrint(suit, rank)
     }
-    
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        debugPrint("touchesBegan")
-        //let touch:UITouch = touches.first! as UITouch
-        //let position = touches.first!.locationInView(touch.view?.superview)
-        //self.position = position
-        print()
-        
+        NSNotificationCenter.defaultCenter().postNotificationName("touchesBegan", object:self)
+        previousPosition = position
+        //physicsBody!.velocity = CGVectorMake(5, 80)
+//        physicsBody!.density = 5
+//        physicsBody!.mass = 0.05
+//        physicsBody!.applyTorque(3.5)
+        physicsBody!.applyForce(CGVectorMake(20,20))
+        //physicsBody!.applyImpulse(CGVectorMake(2, 4))
+        physicsBody!.velocity = CGVectorMake(40, 40)
+
     }
-    
     
     override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        //debugPrint("touchesMoved")
         let touch:UITouch = touches.first! as UITouch
-        position = touch.locationInView(touch.view)
-        //let position = touches.first!.locationInView(touch.view?.superview)
-        //let previousPosition = touches.first!.previousLocationInView(touch.view?.superview)
-        //let newPosition = CGPoint(x: previousPosition.x-position.x, y: previousPosition.y-position.y)
-
-        //self.position = previousPosition
+        var p = touch.locationInView(touch.view)
+        p.y = self.scene!.size.height - p.y
+        position = p
+        _zPosition++
+        zPosition = _zPosition
     }
     
-    
-
-    
+    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        NSNotificationCenter.defaultCenter().postNotificationName("touchesEnded", object:self)
+    }
 }
-
-/*
-
-import Foundation
-import UIKit
-import SpriteKit
-
-class Card {
-
-let width:CGFloat = 40
-let height:CGFloat = 40*1.4
-
-
-var suit:Suit
-var rank:Rank
-var texture:SKTexture
-
-init(suit:Suit, rank:Rank, texture:SKTexture){
-self.suit = suit
-self.rank = rank
-self.texture = texture
-}
-
-func print()->Void{
-debugPrint(suit, rank, texture.textureRect())
-}
-
-func getSpriteNode()->SKSpriteNode{
-let image = SKSpriteNode()
-image.texture = texture
-image.size.width = width
-image.size.height = height
-return image
-}
-
-
-
-}
-
-*/

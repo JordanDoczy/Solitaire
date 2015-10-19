@@ -13,9 +13,9 @@
 		848F91ED1B9BAE630062ED0B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 848F91EB1B9BAE630062ED0B /* Main.storyboard */; };
 		848F91EF1B9BAE630062ED0B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 848F91EE1B9BAE630062ED0B /* Assets.xcassets */; };
 		848F91F21B9BAE630062ED0B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 848F91F01B9BAE630062ED0B /* LaunchScreen.storyboard */; };
-		848F91FA1B9BAF420062ED0B /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848F91F91B9BAF420062ED0B /* Card.swift */; settings = {ASSET_TAGS = (); }; };
-		848F91FC1B9BAF4F0062ED0B /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848F91FB1B9BAF4F0062ED0B /* Deck.swift */; settings = {ASSET_TAGS = (); }; };
-		848F91FE1B9BAF5E0062ED0B /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848F91FD1B9BAF5E0062ED0B /* Enums.swift */; settings = {ASSET_TAGS = (); }; };
+		848F91FA1B9BAF420062ED0B /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848F91F91B9BAF420062ED0B /* Card.swift */; };
+		848F91FC1B9BAF4F0062ED0B /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848F91FB1B9BAF4F0062ED0B /* Deck.swift */; };
+		848F91FE1B9BAF5E0062ED0B /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848F91FD1B9BAF5E0062ED0B /* Enums.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -102,6 +102,8 @@
 		848F91D81B9BAE630062ED0B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftMigration = 0710;
+				LastSwiftUpdateCheck = 0710;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = JMD;
 				TargetAttributes = {
@@ -299,6 +301,7 @@
 				848F91F81B9BAE630062ED0B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -12,24 +12,27 @@ import SpriteKit
 class Deck {
         
     var cards: [Card] = []
-    var texture: SKTexture
+    let texture:SKTexture = SKTexture(imageNamed: "deck.png")
     
     init(){
-        texture = SKTexture(imageNamed: "deck")
+        
         createDeck()
     }
     
     func createDeck(){
         cards.removeAll()
         
-        for i in 1...4 {
-            for j in 1...13 {
-                cards.append(Card(suit: Suit(rawValue: i)!, rank: Rank(rawValue: j)!,
-                    texture: getCardTexture(Suit(rawValue: i)!, rank: Rank(rawValue: j)!)))
+        for i:UInt32 in 1...4 {
+            for j:UInt32 in 1...13 {
+                cards.append(createCard(Suit(rawValue: i)!, rank: Rank(rawValue: j)!))
             }
         }
-        
-        shuffle()
+    }
+    
+    func createCard(suit:Suit, rank:Rank) -> Card{
+        let texture = getCardTexture(suit, rank: rank)
+        let card = Card(suit: suit, rank: rank, texture: texture)
+        return card;
     }
     
     func print(){
@@ -48,15 +51,11 @@ class Deck {
     }
     
     func getCardTexture(suit:Suit, rank:Rank)->SKTexture{
-        
         let x:CGFloat = CGFloat(rank.rawValue-1)/13
         let y:CGFloat = CGFloat(suit.rawValue-1)/4
         let width:CGFloat = 1/13
         let height:CGFloat = 1/4
         let bounds:CGRect = CGRectMake(x, y, width, height)
-        
         return SKTexture(rect: bounds, inTexture: texture)
     }
-    
-    
 }
